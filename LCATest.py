@@ -4,15 +4,15 @@ import unittest
 
 class MyTestCase(unittest.TestCase):
 
-    def test_insert(self):
-        root=LCA.Node(1)
-        LCA.insert(root, LCA.Node(2))
-        LCA.insert(root, LCA.Node(3))
-        LCA.insert(root, LCA.Node(4))
-        LCA.insert(root, LCA.Node(5))
-        LCA.insert(root, LCA.Node(6))
-        LCA.insert(root, LCA.Node(7))
-        self.assertEqual('1,2,3,4,5,6,7',LCA.printBST(root))
+    def test(self):
+        root = LCA.Node(1)
+        root.left = LCA.Node(2)
+        root.right = LCA.Node(3)
+        root.left.left = LCA.Node(4)
+        root.left.right = LCA.Node(5)
+        root.right.left = LCA.Node(6)
+        root.right.right = LCA.Node(7)
+        self.assertEqual(2,LCA.findLCA(root, 4, 5, ))
 
 
 
