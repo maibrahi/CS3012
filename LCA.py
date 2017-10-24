@@ -8,6 +8,7 @@ class Node:
         self.flag = False
 
 def LCA(root,x,y):
+    lca=[]
     XNode = findNode(root,x)
     YNode = findNode(root, y)
     if(XNode.key == -1 | YNode.key == -1):
@@ -16,15 +17,38 @@ def LCA(root,x,y):
         print "invalid nodes"
     else:
         AncestorsFlag(XNode)
+        AncestorCount(YNode)
+        GetLca(root,lca)
 
 
-def AncestorsFlag(source):
-    source.flag = True
+def AncestorCount(node):
+    i=0
+    j=0
+    if (node.flag == True):
+        while (i < len(node.parents)):
+            node.parents[i].count+=1
+            i += 1
+    while (j < len(node.parents)):
+        AncestorCount(node.parents[j])
+        j += 1
+
+
+def GetLca(root,lca):
+    i=0
+    if(root.flag == True & root.count == 0):
+        lca.append(root.key)
+    while (i < len(root.children)):
+        AncestorsFlag(root.children[i])
+
+
+
+
+def AncestorsFlag(node):
+    node.flag = True
     i = 0
-    while (i < len(source.parents)):
-        AncestorsFlag(source.parents[i])
+    while (i < len(node.parents)):
+        AncestorsFlag(node.parents[i])
         i+=1
-
 
 
 def findNode(root,k):
