@@ -31,8 +31,14 @@ class MyTestCase(unittest.TestCase):
         root.left.left = LCA.Node(4)
         self.assertEqual(-1, LCA.findLCA(root, 2, 9, ))
 
-
-
+#            ---------------u-----------
+#           |               |          |    for this DAG here the LCA of X and Y are both Z and Y
+#           |               ▼          |    W and Q have no LCA
+#           |    w--------->v          |
+#           |    |          |          |
+#           |    |-->z----- |          ▼
+#           ▼    |   |      ▼          q
+#           x <------       y<---------
 
 
 
