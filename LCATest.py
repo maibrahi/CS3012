@@ -40,6 +40,31 @@ class MyTestCase(unittest.TestCase):
 #           ▼    |   |      ▼          q
 #           x <------       y<---------
 
+     def testDagStandard(self):
+        root = Node('u')
+    w = Node('w')
+    z = Node('z')
+    y = Node('y')
+    q = Node('q')
+    x = Node('x')
+    v = Node('v')
+    root.children = [q,x,v]
+    w.children = [v,z,x]
+    v.parents = [w,root]
+    v.children = [y]
+    z.parents = [w]
+    z.children = [y,x]
+    q.parents = [root]
+    q.children = [y]
+    x.parents = [z,root,w]
+    y.parents = [q,v,z]
+
+    lca = LCA(root, 'x','y')
+
+    i=0
+    while (i < len(lca)):
+        print"%d" % (lca[i])
+
 
 
 if __name__ == '__main__':
